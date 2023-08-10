@@ -1,0 +1,17 @@
+html
+    head
+        title NeuBytes
+        link(rel="stylesheet", href="/css/site.css")
+        script(src="/js/site.js" defer)
+        block head-block
+    body 
+        header 
+            nav 
+                a(href = "/") Home 
+                a(href = "/login") Login
+                a(href = "/profile") Profile
+            h1 NeuBytes
+            h2 A Digital cook book for Neumont Students
+        section(class = "content")
+            block layout-content
+        footer Copyright 2023
