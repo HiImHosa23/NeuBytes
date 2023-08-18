@@ -1,10 +1,4 @@
 {
-  "dependencies": {
-    "express": "^4.18.2",
-    "nodemon": "^3.0.1",
-    "pug": "^3.0.2",
-    "save": "^2.9.0"
-  },
   "name": "neubytes",
   "version": "1.0.0",
   "main": "app.js",
@@ -14,5 +8,15 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.4.2",
+    "node": "^20.5.0",
+    "nodemon": "^3.0.1",
+    "pug": "^3.0.2"
+  },
+  "keywords": [],
   "description": ""
 }

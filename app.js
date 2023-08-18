@@ -1,9 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
-const dal = require('./data/recipeDAL').DAL;
 
-app.set('view engine', 'pug');
+app.set('view engine', 'pug', 'html');
 app.set('views', './views');
 
 app.use(express.json()); // Allows express to parse JSON objects from the request
@@ -29,29 +28,21 @@ app.get("/login", (req, res) => {
 app.get("/profile", (req, res) => {
     res.render("profile");
 });
-app.get("/editProfile", (req, res) => {
-    res.render("editProfile");
-});
-app.get("/overview", (req, res) => {
-    res.render("overview");
-});
-app.get("/favorites", (req, res) => {
-    res.render("favorites");
-});
-app.get("/myRecipes", (req, res) => {
 
-    res.render("myRecipes");
+app.get("/breakfast", (req, res) => {
+    res.render("breakfast");
 });
-app.post("/myRecipes/create", (req,res) => {
-    console.log(req.body);
-    if(req.body.question != "" && req.body.name != "" && req.body.ingredients != "" && req.body.instructions){
-        dal.createRecipe(req.body.name, req.body.ingredients, req.body.instructions)
-        res.json("Recipe created successfully");
-    } else {
-        res.render("/myRecipes/create")
-    }
-    // get the joke values from the REQ
-    // validate and call the DAL to create the joke
+
+app.get("/lunch", (req, res) => {
+    res.render("lunch");
+});
+
+app.get("/dinner", (req, res) => {
+    res.render("dinner");
+});
+
+app.get("/dessert", (req, res) => {
+    res.render("dessert");
 });
 
 app.listen(port, () => {
