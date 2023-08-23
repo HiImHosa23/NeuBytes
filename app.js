@@ -105,6 +105,29 @@ app.post("/addRecipe", async (req,res) => {
     // validate and call the DAL to create the joke
 });
 
+app.post("/login", async (req, res) => {
+    if (req.body.username != "" && req.body.password != "" && req.body.email != "") {
+        dal.accountDAL(req.body.username, req.body.password, req.body.email)
+        res.json("Account created successfully");
+        const bodyString = JSON.stringify(req.body)
+        const loginString = "Your Login : " + bodyString + " has been submitted!"
+
+        console.log(loginString)
+
+        const result = await fetch({
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: bodyString
+        });
+        res.render(bodyString)
+    } else {
+        res.render("home")
+    }
+    res.redirect("/login")
+});
+
 app.listen(port, () => {
     console.log("Express listening on port ", port)
 
