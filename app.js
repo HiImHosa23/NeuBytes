@@ -1,9 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
-const dal = require('./data/recipeDAL').DAL;
-const accountDAL = require('./data/accountDAL').DAL;
-
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -11,7 +8,7 @@ app.set('views', './views');
 app.use(express.json()); // Allows express to parse JSON objects from the request
 app.use(express.urlencoded());
 
-const port = 3000;
+const port = 7777;
 
 app.use(express.static('public'));
 
@@ -19,7 +16,6 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
 
     res.render("home")
-
 });
 
 app.get("/login", (req, res) => {
@@ -29,24 +25,48 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+
     res.render("profile");
 });
-app.get("/editProfile", (req, res) => {
-    res.render("editProfile");
+
+app.get("/edit", (req, res) => {
+
+    res.render("edit");
 });
-app.get("/overview", (req, res) => {
-    res.render("overview");
-});
-app.get("/favorites", (req, res) => {
-    res.render("favorites");
-});
+
 app.get("/myRecipes", (req, res) => {
 
-    res.render("myRecipes");
+    res.render("myrecipes");
 });
+
 app.get("/addRecipe", (req, res) => {
 
     res.render("addRecipe");
+});
+
+app.get("/favorites", (req, res) => {
+
+    res.render("favorites");
+});
+
+app.get("/breakfast", (req, res) => {
+
+    res.render("breakfast");
+});
+
+app.get("/lunch", (req, res) => {
+
+    res.render("lunch");
+});
+
+app.get("/dinner", (req, res) => {
+
+    res.render("dinner");
+});
+
+app.get("/dessert", (req, res) => {
+
+    res.render("dessert");
 });
 
 
