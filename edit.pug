@@ -1,0 +1,26 @@
+extends layout
+
+block layout-content
+    link(rel="stylesheet" href="/css/edit.css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    body 
+        div(class="container")
+            div(class="leftbox")
+                nav(class="navbar2") 
+                    a(href="/profile" class="overview")
+                        i(class="fa fa-user")
+                    a(href="/edit" class="edit")
+                        i(class="fa-solid fa-pencil")
+                    a(href="/myRecipes" class="myRecipes")
+                        i(class="fa-solid fa-bowl-food")
+                    a(href="/favorites" class="favorites")
+                        i(class="fa-solid fa-heart")
+                    a(href="/" class="signout")
+                        i(class="fa-solid fa-right-from-bracket")
+            div(class="rightbox")
+                div(class="profile")
+                    h1 Edit Profile
+                    div(class="space")
+                        h2 Password
+                        a(class="password" href="#") Change Password
