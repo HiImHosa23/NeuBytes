@@ -1,0 +1,38 @@
+extends layout
+block head-block    
+    link(rel="stylesheet", href="/css/site.css")
+    script(src="/js/site.js" defer)
+
+block layout-content
+    br
+    br
+    br
+    br
+    br
+    br
+    br
+    h1 Add a Recipe
+    form(id="recipeForm", action="/addRecipe", method="POST")
+        input(type ="text", name= "name", placeholder="Name", required)
+        br
+        br
+        input(type ="text",id="Ingredients" name= "Ingredient", placeholder="Ingredient", required)
+        div(id="myDiv")
+        br
+        input(type= "button", value= "Add Ingredients" onclick= "handleButtonClick()" )
+        br
+        br
+        input(type= "text", name= "instructions", placeholder="Instructions" ) 
+        br
+        br
+        label Category:
+        select(name= "category", placeholder="Category", required)
+            option(value= "Breakfast") Breakfast
+            option(value= "Lunch") Lunch
+            option(value= "Dinner") Dinner
+            option(value= "Dessert") Dessert
+        br
+        br
+        input(type ="submit", value="Submit")
+        br
+        br
