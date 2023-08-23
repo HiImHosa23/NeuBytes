@@ -1,17 +1,28 @@
 html
     head
         title NeuBytes
-        link(rel="stylesheet", href="/css/site.css")
-        script(src="/js/site.js" defer)
+        link(rel="stylesheet", href="css/site.css")
+        script(src="site.js" defer)
         block head-block
     body 
-        header 
-            nav 
-                a(href = "/") Home 
-                a(href = "/login") Login
-                a(href = "/profile") Profile
-            h1 NeuBytes
-            h2 A Digital cook book for Neumont Students
+        header(class='header') 
+            a(class='logo') NEUBYTES
+
+            nav(class="navbar")
+                a(href = "/breakfast") BREAKFAST 
+                a(href = "/lunch") LUNCH 
+                a(href = "/dinner") DINNER 
+                a(href = "/dessert") DESSERT 
+
+            nav(class='navbar') 
+                    a(href = "/" class='home') Home 
+                    a(href = "/login" class='login') Login 
+                    a(href = "/profile" class='profile') Profile
+
+            nav(class="navbar")
+                input(type='text' placeholder='Search...' name='search')
+                
         section(class = "content")
+
             block layout-content
         footer Copyright 2023
