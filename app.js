@@ -1,8 +1,11 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const dal = require('./data/recipeDAL').DAL;
+const accountDAL = require('./data/accountDAL').DAL;
 
-app.set('view engine', 'pug', 'html');
+
+app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(express.json()); // Allows express to parse JSON objects from the request
@@ -28,21 +31,58 @@ app.get("/login", (req, res) => {
 app.get("/profile", (req, res) => {
     res.render("profile");
 });
+app.get("/editProfile", (req, res) => {
+    res.render("editProfile");
+});
+app.get("/overview", (req, res) => {
+    res.render("overview");
+});
+app.get("/favorites", (req, res) => {
+    res.render("favorites");
+});
+app.get("/myRecipes", (req, res) => {
 
-app.get("/breakfast", (req, res) => {
-    res.render("breakfast");
+    res.render("myRecipes");
+});
+app.get("/addRecipe", (req, res) => {
+
+    res.render("addRecipe");
 });
 
-app.get("/lunch", (req, res) => {
-    res.render("lunch");
-});
 
-app.get("/dinner", (req, res) => {
-    res.render("dinner");
-});
+app.post("/addRecipe", async (req,res) => {
+    console.log(req.body);
+        //accountDAL.addInitialUsers();
 
-app.get("/dessert", (req, res) => {
-    res.render("dessert");
+    if(req.body.name != "" && req.body.ingredientsArray != "" && req.body.instructions != "" && req.body.category != ""){
+        dal.createRecipe(req.body.name, req.body.ingredientsArray, req.body.instructions, req.body.category)
+        res.json("Recipe created successfully");
+        const bodyString = JSON.stringify(req.body)
+        const recipeString = "Your Recipe : " + bodyString + " has been submitted!"
+
+        console.log(recipeString)
+
+        const result = await fetch({
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: bodyString
+        });
+        res.render(bodyString)
+    } else {
+        res.render("home")
+        // what to do if it is invalid
+    }
+
+    // now that we have the joke values 
+    // how the heck do we give them to the AP so it can give it to mongoDB
+    // We can use fetch, to send a request to OUR api passing the joke details
+
+    // how do we respond
+    res.redirect("/addRecipe")
+    // get the joke values from the REQ
+    // validate and call the DAL to create the joke
 });
 
 app.listen(port, () => {
