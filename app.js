@@ -1,6 +1,9 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const dal = require('./data/recipeDAL').DAL;
+const accountDAL = require('./data/accountDAL').DAL;
+
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -8,7 +11,7 @@ app.set('views', './views');
 app.use(express.json()); // Allows express to parse JSON objects from the request
 app.use(express.urlencoded());
 
-const port = 7777;
+const port = 3000;
 
 app.use(express.static('public'));
 
@@ -16,6 +19,7 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
 
     res.render("home")
+
 });
 
 app.get("/login", (req, res) => {
@@ -25,64 +29,42 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-
     res.render("profile");
 });
-
-app.get("/edit", (req, res) => {
-
-    res.render("edit");
+app.get("/editProfile", (req, res) => {
+    res.render("editProfile");
 });
-
+app.get("/overview", (req, res) => {
+    res.render("overview");
+});
+app.get("/favorites", (req, res) => {
+    res.render("favorites");
+});
 app.get("/myRecipes", (req, res) => {
 
-    res.render("myrecipes");
+    res.render("myRecipes");
 });
-
 app.get("/addRecipe", (req, res) => {
 
     res.render("addRecipe");
 });
 
-app.get("/favorites", (req, res) => {
-
-    res.render("favorites");
-});
-
-app.get("/breakfast", (req, res) => {
-
-    res.render("breakfast");
-});
-
-app.get("/lunch", (req, res) => {
-
-    res.render("lunch");
-});
-
-app.get("/dinner", (req, res) => {
-
-    res.render("dinner");
-});
-
-app.get("/dessert", (req, res) => {
-
-    res.render("dessert");
-});
-
 
 app.post("/addRecipe", async (req,res) => {
+    
     console.log(req.body);
-        //accountDAL.addInitialUsers();
 
-    if(req.body.name != "" && req.body.ingredientsArray != "" && req.body.instructions != "" && req.body.category != ""){
-        dal.createRecipe(req.body.name, req.body.ingredientsArray, req.body.instructions, req.body.category)
-        res.json("Recipe created successfully");
+    if(req.body.name != "" && req.body.Ingredientfunction !="" && req.body.instructions != "" && req.body.category != ""){
+        // ingredientArray = new Array[string]
+        // ingredientArray.push(req.body.Ingredients)
+        dal.createRecipe(req.body.name, req.body.Ingredientfunction, req.body.instructions, req.body.category)
+        const recipeURL = "http://localhost:3000/home"
         const bodyString = JSON.stringify(req.body)
         const recipeString = "Your Recipe : " + bodyString + " has been submitted!"
 
         console.log(recipeString)
 
-        const result = await fetch({
+        const result = await fetch(recipeURL,{
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -103,29 +85,6 @@ app.post("/addRecipe", async (req,res) => {
     res.redirect("/addRecipe")
     // get the joke values from the REQ
     // validate and call the DAL to create the joke
-});
-
-app.post("/login", async (req, res) => {
-    if (req.body.username != "" && req.body.password != "" && req.body.email != "") {
-        dal.accountDAL(req.body.username, req.body.password, req.body.email)
-        res.json("Account created successfully");
-        const bodyString = JSON.stringify(req.body)
-        const loginString = "Your Login : " + bodyString + " has been submitted!"
-
-        console.log(loginString)
-
-        const result = await fetch({
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: bodyString
-        });
-        res.render(bodyString)
-    } else {
-        res.render("home")
-    }
-    res.redirect("/login")
 });
 
 app.listen(port, () => {

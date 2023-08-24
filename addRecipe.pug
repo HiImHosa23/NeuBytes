@@ -15,8 +15,6 @@ block layout-content
     form(id="recipeForm", action="/addRecipe", method="POST")
         input(type ="text", name= "name", placeholder="Name", required)
         br
-        br
-        input(type ="text",id="Ingredients" name= "Ingredient", placeholder="Ingredient", required)
         div(id="myDiv")
         br
         input(type= "button", value= "Add Ingredients" onclick= "handleButtonClick()" )
