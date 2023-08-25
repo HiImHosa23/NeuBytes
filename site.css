@@ -1,18 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Poppins:ital@1&display=swap');
 
-* {
+*{
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-body {
+body{
     min-height: 100vh;
     background: whitesmoke;
 }
-
-.header {
+.header{
     position: fixed;
     top: 0;
     left: 0;
@@ -24,15 +22,13 @@ body {
     align-items: center;
     z-index: 100;
 }
-
-.logo {
+.logo{
     font-size: 32px;
     color: #ff7f51;
     text-decoration: none;
     font-weight: 700;
 }
-
-.navbar a {
+.navbar a{
     position: relative;
     font-size: 18px;
     color: #ff7f51;
@@ -40,8 +36,7 @@ body {
     text-decoration: none;
     margin-left: 40px;
 }
-
-.navbar a::before {
+.navbar a::before{
     content: '';
     position: absolute;
     top: 100%;
@@ -51,9 +46,36 @@ body {
     background: #ff7f51;
     transition: .3s;
 }
-
 .navbar a:hover::before {
     width: 100%;
+}
+.navbar input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar a, .topnav input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .navbar input[type=text] {
+        border: 1px solid #ccc;
+    }
+}
+
+.center{
+    position: absolute; 
+    top: 50%;
+    width: 100;
 }
 
 footer {

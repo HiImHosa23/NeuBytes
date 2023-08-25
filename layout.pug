@@ -1,27 +1,28 @@
 html
     head
         title NeuBytes
-        link(rel="stylesheet", href="css/site.css")
-        script(src="site.js" defer)
+        link(rel="stylesheet" href="/css/site.css")
+        script(src="/js/site.js" defer)
+            
         block head-block
     body 
         header(class='header') 
             a(class='logo') NEUBYTES
 
-            nav(class="navbar")
+            nav(class='navbar')
                 a(href = "/breakfast") BREAKFAST 
                 a(href = "/lunch") LUNCH 
                 a(href = "/dinner") DINNER 
                 a(href = "/dessert") DESSERT 
+                a(href = "/addRecipe") ADD RECIPE
 
             nav(class='navbar') 
                     a(href = "/" class='home') Home 
                     a(href = "/login" class='login') Login 
-                    a(href = "/profile" class='profile') Profile
-
-            nav(class="navbar")
+                    a(href = "/profile" class='profile') Profile 
+            nav(class='navbar')
                 input(type='text' placeholder='Search...' name='search')
-                
+
         section(class = "content")
 
             block layout-content
